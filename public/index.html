@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Example</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff; /* White background for the container */
+            color: #000; /* Black text color */
+        }
+
+        .image-container {
+            position: relative;
+            margin-bottom: 20px;
+            height: 400px; /* Initial height for the image container */
+        }
+
+        .image {
+            cursor: pointer;
+            max-width: 100%;
+            max-height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .fullscreen .image-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullscreen .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            width: auto;
+        }
+
+        .code-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .code-container pre {
+            background-color: #000; /* Black background for the code block */
+            color: #fff; /* White text color */
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            position: relative;
+            margin: 0;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Permit.io LoTR Health Care Demo App</h2>
+  <p>Click on the picture to make it full screen.</p>
+    <div class="image-container">
+        <img class="image" src="images/permit-hc-lotr.png" alt="Placeholder Image">
+    </div>
+    <br /><br /><br />
+    
+</div>
+<div class="container">
+    <h2>Profile API</h2>
+    <h3> GET /profile/:userId</h3>
+      <p>Headers:</p>
+        <pre class="headers">CurrentUserName: {loggedInUser}</pre>
+    <div class="code-container">
+      
+        <pre class="code-block">curl --location 'http://localhost:3000/profile/Aragorn' \
+          --header 'Content-Type: application/json' \
+          --header 'CurrentUserName: Arwen'</pre>
+        <button class="copy-button">Copy</button>
+    </div>
+
+    <p></p>
+    <br /><br /><br /><br /><br />
+    <h3> POST /profile/:userId</h3>
+      <p>Headers:</p>
+        <pre class="headers">CurrentUserName: {loggedInUser}</pre>
+        <pre class="headers">Content-Type: application/json</pre>
+        <p>Body:</p>
+        <pre class="headers">The updated json you want to store in the profile. **Warning**: no data sanitization ':)	</pre>
+    <div class="code-container">
+        <pre class="code-block">curl --location 'http://localhost:3000/profile/Aragorn' \
+          --header 'Content-Type: application/json' \
+          --header 'CurrentUserName: Aragorn' \
+          --data '{
+              "id": "pr_2",
+              "name": "Aragorn'\''s Profile",
+              "age": 88,
+              "gender": "male",
+              "blood_type": "AB-"
+          }'</pre>
+        <button class="copy-button">Copy</button>
+    </div>
+
+    <p></p>
+</div>
+
+<div class="container">
+  <h2>Health Plan API</h2>
+  <h3> GET /plan/:userId</h3>
+    <p>Headers:</p>
+      <pre class="headers">CurrentUserName: {loggedInUser}</pre>
+  <div class="code-container">
+    
+      <pre class="code-block">curl --location 'http://localhost:3000/plan/Aragorn' \
+        --header 'CurrentUserName: Aragorn'</pre>
+      <button class="copy-button">Copy</button>
+  </div>
+
+  <p></p>
+  <br /><br /><br /><br /><br />
+  <h3> POST /plan/:userId</h3>
+    <p>Headers:</p>
+      <pre class="headers">CurrentUserName: {loggedInUser}</pre>
+      <pre class="headers">Content-Type: application/json</pre>
+      <p>Body:</p>
+      <pre class="headers">The updated json you want to store in the profile. **Warning**: no data sanitization ':)	</pre>
+  <div class="code-container">
+      <pre class="code-block">curl --location 'http://localhost:3000/plan/Aragorn' \
+        --header 'CurrentUserName: Aragorn' \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "id": "aragorn",
+            "owner_id": "aragorn",
+            "name": "Aragorn'\''s Other Health Plan"
+        }'</pre>
+      <button class="copy-button">Copy</button>
+  </div>
+
+  <p></p>
+</div>
+
+<div class="container">
+  <h2>Health Record API</h2>
+  <h3> GET /record/:userId</h3>
+    <p>Headers:</p>
+      <pre class="headers">CurrentUserName: {loggedInUser}</pre>
+  <div class="code-container">
+    
+      <pre class="code-block">curl --location 'http://localhost:3000/record/Aragorn' \
+        --header 'CurrentUserName: Aragorn'</pre>
+      <button class="copy-button">Copy</button>
+  </div>
+
+  <p></p>
+  <br /><br /><br /><br /><br />
+  <h3> POST /record/:userId</h3>
+    <p>Headers:</p>
+      <pre class="headers">CurrentUserName: {loggedInUser}</pre>
+      <pre class="headers">Content-Type: application/json</pre>
+      <p>Body:</p>
+      <pre class="headers">The updated json you want to store in the profile. **Warning**: no data sanitization ':)	</pre>
+  <div class="code-container">
+      <pre class="code-block">curl --location 'http://localhost:3000/record/Aragorn' \
+        --header 'CurrentUserName: Aragorn' \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "id": "aragorn",
+            "owner_id": "aragorn",
+            "name": "Aragorn'\''s Other Health Plan"
+        }'</pre>
+      <button class="copy-button">Copy</button>
+  </div>
+
+  <p></p>
+</div>
+
+<div class="container">
+  <h2>Doctor API</h2>
+  <h3> GET /doctor/:userId</h3>
+    <p>Headers:</p>
+      <pre class="headers">CurrentUserName: {loggedInUser}</pre>
+  <div class="code-container">
+    
+      <pre class="code-block">curl --location 'http://localhost:3000/doctor/Gandalf/' \
+        --header 'CurrentUserName: Aragorn'</pre>
+      <button class="copy-button">Copy</button>
+  </div>
+
+  <p></p>
+  <br /><br /><br /><br /><br />
+  <h3> POST /doctor/:userId</h3>
+    <p>Headers:</p>
+      <pre class="headers">CurrentUserName: {loggedInUser}</pre>
+      <pre class="headers">Content-Type: application/json</pre>
+      <p>Body:</p>
+      <pre class="headers">The updated json you want to store in the profile. **Warning**: no data sanitization ':)	</pre>
+  <div class="code-container">
+      <pre class="code-block">curl --location 'http://localhost:3000/doctor/Gandalf' \
+        --header 'CurrentUserName: Gandalf' \
+        --header 'Content-Type: application/json' \
+        --data '{
+            "name": "Gandalf",
+            "id": "dr_gandalf",
+            "specialty": "Wizardry and Wichcraft",
+            "hospital": "Middle-earth Medical Center"
+        }''</pre>
+      <button class="copy-button">Copy</button>
+  </div>
+  <br /><br /><br /><br /><br />
+  <h3> GET /doctor/:userId/schedule</h3>
+    <p>Headers:</p>
+      <pre class="headers">CurrentUserName: {loggedInUser}</pre>
+  <div class="code-container">
+    
+      <pre class="code-block">curl --location 'http://localhost:3000/doctor/Gandalf/schedule' \
+        --header 'CurrentUserName: Aragorn'</pre>
+      <button class="copy-button">Copy</button>
+  </div>
+
+  <p></p>
+  <br /><br /><br /><br /><br />
+  <h3> POST /doctor/:userId/schedule</h3>
+    <p>Headers:</p>
+      <pre class="headers">CurrentUserName: {loggedInUser}</pre>
+      <pre class="headers">Content-Type: application/json</pre>
+      <p>Body:</p>
+      <pre class="headers">The updated json you want to store in the profile. **Warning**: no data sanitization ':)	</pre>
+  <div class="code-container">
+      <pre class="code-block">curl --location 'http://localhost:3000/doctor/Gandalf/schedule' \
+        --header 'CurrentUserName: Aragorn' \
+        --header 'Content-Type: application/json' \
+        --data '[
+            {
+                "day": "Monday",
+                "hours": "9:00 AM - 5:00 PM"
+            },
+            {
+                "day": "Tuesday",
+                "hours": "Not Available"
+            },
+            {
+                "day": "Wednesday",
+                "hours": "Not Available"
+            },
+            {
+                "day": "Thursday",
+                "hours": "9:00 AM - 5:00 PM"
+            },
+            {
+                "day": "Friday",
+                "hours": "9:00 AM - 1:00 PM"
+            }
+        ]'</pre>
+      <button class="copy-button">Copy</button>
+  </div>
+
+  <p></p>
+</div>
+
+<script>
+    // Get all code blocks and copy buttons
+    const codeBlocks = document.querySelectorAll('.code-block');
+    const copyButtons = document.querySelectorAll('.copy-button');
+
+    // Attach copy functionality to each copy button
+    copyButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            copyCode(codeBlocks[index]);
+        });
+    });
+
+    // Copy code to clipboard
+    function copyCode(codeBlock) {
+        const codeText = codeBlock.innerText;
+
+        // Create a temporary textarea to copy the code
+        const textarea = document.createElement('textarea');
+        textarea.value = codeText;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+
+        // Change button text to indicate copied
+        const copyButton = codeBlock.nextElementSibling;
+        copyButton.textContent = 'Copied!';
+        setTimeout(function() {
+            copyButton.textContent = 'Copy';
+        }, 2000); // Reset button text after 2 seconds
+    }
+
+    // Get the image element and its container
+    const image = document.querySelector('.image');
+    const imageContainer = document.querySelector('.image-container');
+    let isFullscreen = false;
+
+    // Attach click event listener to the image
+    image.addEventListener('click', function() {
+        if (!isFullscreen) {
+            openFullscreen();
+        } else {
+            closeFullscreen();
+        }
+    });
+
+    // Function to open fullscreen
+    function openFullscreen() {
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        document.querySelector('.container').classList.add('fullscreen');
+        imageContainer.style.height = '100%'; // Make the image container fill the fullscreen
+        isFullscreen = true;
+    }
+
+    // Function to close fullscreen
+    function closeFullscreen() {
+        document.body.style.overflow = ''; // Enable scrolling
+        document.querySelector('.container').classList.remove('fullscreen');
+        imageContainer.style.height = '400px'; // Restore the initial height of the image container
+        isFullscreen = false;
+    }
+</script>
+
+</body>
+</html>
