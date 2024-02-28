@@ -2,7 +2,12 @@
 
 ![](public/images/permit-hc-lotr.png)
 
----
+## Install
+
+`npm install`
+
+`DEBUG=permit-demo:* npm start`
+
 
 ## Profile API
 
